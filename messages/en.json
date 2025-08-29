@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "blog": "Blog",
+    "team": "Our Team",
+    "contact": "Contact us",
+    "bookAppointment": "Book Appointment"
+  },
+  "hero": {
+    "title": "Lorem Ipsum",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+    "readMore": "Read More"
+  },
+  "team": {
+    "title": "Our Team",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+    "memberName": "Name Here",
+    "memberPosition": "POSITION HERE"
+  },
+  "testimonials": {
+    "title": "What our clients are saying",
+    "description": "Our clients range from individual investors, to local, international as well as fortune 500 companies. Our clients range from individual investors, to local, international as well as fortune 500 companies.",
+    "quote": "With the help of the hospitable staff of Al Safar and Partners I was able to get my work done without any hassle. The help I received helped me a great deal to overcome the issues that I faced. I was always updated about my case and my queries never went unanswered.",
+    "clientName": "Mohammed Saif",
+    "clientPosition": "CEO/Company"
+  },
+  "footer": {
+    "emailPlaceholder": "Email",
+    "subscribe": "Subscribe",
+    "contacts": "Contacts",
+    "about": "About",
+    "strategy": "Our Strategy",
+    "advantages": "Our Advantages",
+    "responsibility": "Social Responsibility",
+    "services": "Our Services",
+    "copyright": "© 2024. All rights reserved."
+  },
+  "services": {
+    "legalConsultation": "Legal Consultation Services",
+    "defense": "Defense in All Cases",
+    "companiesInstitutions": "Services for Companies and Institutions",
+    "foreignCompanies": "Establishing National and Foreign Companies",
+    "foreignInvestment": "Foreign Investment Services",
+    "banksFinancial": "Banks and Financial Institutions",
+    "arbitration": "Arbitration",
+    "commercialAgencies": "Commercial Agencies",
+    "contracts": "Contracts",
+    "corporateGovernance": "Corporate Governance Services",
+    "intellectualProperty": "Intellectual Property",
+    "vision2030": "Supporting Vision 2030",
+    "notarization": "Notarization",
+    "companiesLiquidation": "Companies Liquidation",
+    "corporateRestructuring": "Corporate Restructuring and Reorganization",
+    "estates": "Estates",
+    "insurance": "Insurance",
+    "internalRegulations": "Internal Regulations for Companies"
+  }
+}
