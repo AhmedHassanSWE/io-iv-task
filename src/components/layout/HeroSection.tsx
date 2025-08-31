@@ -183,7 +183,9 @@ function HeroSection() {
             >
               {/* Left controls - Hidden on mobile */}
               <div
-                className={`hidden md:flex flex-col items-center mt-6 ${isRTL ? "ms-8" : "me-8"}`}
+                className={`hidden md:flex flex-col items-center mt-6 ${
+                  isRTL ? "ms-8 order-2" : "me-8"
+                }`}
               >
                 <button className="w-10 h-10 rounded-full border border-white/70 text-white flex items-center justify-center hover:bg-white hover:text-[#4b2f28] transition-colors">
                   <FiChevronLeft className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
