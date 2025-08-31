@@ -17,36 +17,11 @@ function OurTeams() {
   const isRTL = locale === "ar";
 
   const teamMembers = [
-    {
-      id: 1,
-      name: t("team.memberName"),
-      position: t("team.memberPosition"),
-      image: "/portrait.png",
-    },
-    {
-      id: 2,
-      name: t("team.memberName"),
-      position: t("team.memberPosition"),
-      image: "/portrait.png",
-    },
-    {
-      id: 3,
-      name: t("team.memberName"),
-      position: t("team.memberPosition"),
-      image: "/portrait.png",
-    },
-    {
-      id: 4,
-      name: t("team.memberName"),
-      position: t("team.memberPosition"),
-      image: "/portrait.png",
-    },
-    {
-      id: 5,
-      name: t("team.memberName"),
-      position: t("team.memberPosition"),
-      image: "/portrait.png",
-    },
+    { id: 1, name: t("team.memberName"), position: t("team.memberPosition"), image: "/portrait.png" },
+    { id: 2, name: t("team.memberName"), position: t("team.memberPosition"), image: "/portrait.png" },
+    { id: 3, name: t("team.memberName"), position: t("team.memberPosition"), image: "/portrait.png" },
+    { id: 4, name: t("team.memberName"), position: t("team.memberPosition"), image: "/portrait.png" },
+    { id: 5, name: t("team.memberName"), position: t("team.memberPosition"), image: "/portrait.png" },
   ];
 
   return (
@@ -63,10 +38,7 @@ function OurTeams() {
         {/* Team Members Carousel */}
         <div className="relative">
           <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
+            opts={{ align: "start", loop: true }}
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
@@ -108,19 +80,19 @@ function OurTeams() {
               ))}
             </CarouselContent>
 
-            {/* Custom Navigation Arrows */}
+            {/* Custom Navigation Arrows - Hidden on Mobile */}
             <CarouselPrevious
-              className={`absolute top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center z-10 border-0 bg-transparent hover:bg-transparent`}
+              className={`hidden md:flex absolute top-1/2 transform -translate-y-1/2 w-10 h-10 items-center justify-center z-10 border-0 bg-transparent hover:bg-transparent`}
             >
-              <FaChevronLeft className={`w-[22px] h-[22px] text-[#4B2615]`} />
+              <FaChevronLeft className="w-[22px] h-[22px] text-[#4B2615]" />
             </CarouselPrevious>
 
             <CarouselNext
-              className={`absolute top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center z-10 border-0 bg-transparent hover:bg-transparent ${
+              className={`hidden md:flex absolute top-1/2 transform -translate-y-1/2 w-10 h-10 items-center justify-center z-10 border-0 bg-transparent hover:bg-transparent ${
                 isRTL ? "left-0 -translate-x-12" : "right-0 translate-x-12"
               }`}
             >
-              <FaChevronRight className={`w-[22px] h-[22px] text-[#4B2615]`} />
+              <FaChevronRight className="w-[22px] h-[22px] text-[#4B2615]" />
             </CarouselNext>
           </Carousel>
         </div>

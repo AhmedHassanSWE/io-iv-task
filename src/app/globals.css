@@ -309,3 +309,7 @@
 .rtl .translate-x-full {
   transform: translateX(-100%);
 }
+
+.mobile-menu {
+  z-index: 100000000 !important
+}
