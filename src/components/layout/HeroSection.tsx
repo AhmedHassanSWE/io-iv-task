@@ -40,6 +40,11 @@ function HeroSection() {
         {/* Desktop Navigation - Always Centered */}
         <ul className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 -2">
           <li>
+            <Link href="/" className="hover:text-white/80 text-sm">
+              {t("nav.home")}
+            </Link>
+          </li>
+          <li>
             <Link href="#" className="hover:text-white/80 text-sm">
               {t("nav.about")}
             </Link>
