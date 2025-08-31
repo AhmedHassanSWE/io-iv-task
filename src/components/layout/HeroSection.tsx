@@ -17,13 +17,13 @@ function HeroSection() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Background Image with brown overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center z-0"
         style={{ backgroundImage: "url('/hero-bg.jpg')" }}
       />
-      <div className="absolute inset-0 bg-[#4b2f28]/70" />
+      <div className="absolute inset-0 bg-[#4b2f28]/70 z-0" />
 
       {/* Navbar */}
-      <nav className={`relative z-10 flex items-center justify-between w-full px-4 sm:px-6 py-6 text-white transition-all duration-300 ${isServicesOpen ? 'bg-[rgba(75,38,21,1)]' : ''}`}>
+      <nav className={`relative z-50 flex items-center justify-between w-full px-4 sm:px-6 py-6 text-white transition-all duration-300 ${isServicesOpen ? 'bg-[rgba(75,38,21,1)]' : ''}`}>
         {/* Logo - Only visible when services dropdown is open */}
         {isServicesOpen && (
           <div className="flex items-center">
@@ -86,7 +86,7 @@ function HeroSection() {
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-[#4b2f28] shadow-lg md:hidden z-20">
+          <div className="fixed inset-x-0 top-[72px] bg-[#4b2f28] shadow-lg md:hidden z-50">
             <div className="px-4 py-6">
               <ul className="space-y-4">
                 <li>
