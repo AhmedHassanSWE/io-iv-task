@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-100">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 rtl:space-x-reverse text-white hover:text-white/80"
