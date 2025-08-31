@@ -1,5 +1,5 @@
-import {NextIntlClientProvider} from 'next-intl';
 import "./globals.css"
+import Footer from "@/components/layout/Footer";
  
 type Props = {
   children: React.ReactNode;
@@ -9,7 +9,8 @@ export default async function RootLayout({children}: Props) {
   return (
     <html>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        {children}
+        <Footer />
       </body>
     </html>
   );

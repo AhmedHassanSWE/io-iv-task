@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import {
   Popover,
@@ -9,39 +9,45 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const ServicesDropdown = () => {
+interface ServicesDropdownProps {
+  onOpenChange?: (open: boolean) => void;
+}
+
+const ServicesDropdown: React.FC<ServicesDropdownProps> = ({ onOpenChange }) => {
   const t = useTranslations();
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
 
   const services = [
-    { id: 'legalConsultation', gridColumn: 1 },
-    { id: 'defense', gridColumn: 2 },
-    { id: 'companiesInstitutions', gridColumn: 3 },
-    { id: 'foreignCompanies', gridColumn: 4 },
-    { id: 'foreignInvestment', gridColumn: 1 },
-    { id: 'banksFinancial', gridColumn: 2 },
-    { id: 'arbitration', gridColumn: 3 },
-    { id: 'commercialAgencies', gridColumn: 4 },
-    { id: 'contracts', gridColumn: 1 },
-    { id: 'corporateGovernance', gridColumn: 2 },
-    { id: 'intellectualProperty', gridColumn: 3 },
-    { id: 'vision2030', gridColumn: 4 },
-    { id: 'notarization', gridColumn: 1 },
-    { id: 'companiesLiquidation', gridColumn: 2 },
-    { id: 'corporateRestructuring', gridColumn: 3 },
-    { id: 'estates', gridColumn: 4 },
-    { id: 'insurance', gridColumn: 1 },
-    { id: 'internalRegulations', gridColumn: 2 }
+    { id: 'legalConsultation', title: 'Legal Consultation Services' },
+    { id: 'defense', title: 'Defense in All Cases' },
+    { id: 'companiesInstitutions', title: 'Services for Companies and Institutions' },
+    { id: 'foreignCompanies', title: 'Establishing National and Foreign Companies' },
+    { id: 'foreignInvestment', title: 'Foreign Investment Services' },
+    { id: 'banksFinancial', title: 'Banks and Financial Institutions' },
+    { id: 'arbitration', title: 'Arbitration' },
+    { id: 'commercialAgencies', title: 'Commercial Agencies' },
+    { id: 'contracts', title: 'Contracts' },
+    { id: 'corporateGovernance', title: 'Corporate Governance Services' },
+    { id: 'intellectualProperty', title: 'Intellectual Property' },
+    { id: 'vision2030', title: 'Supporting Vision 2030' },
+    { id: 'notarization', title: 'Notarization' },
+    { id: 'companiesLiquidation', title: 'Companies Liquidation' },
+    { id: 'corporateRestructuring', title: 'Corporate Restructuring and Reorganization' },
+    { id: 'estates', title: 'Estates' },
+    { id: 'insurance', title: 'Insurance' },
+    { id: 'internalRegulations', title: 'Internal Regulations for Companies' }
   ];
 
   return (
-    <Popover>
+    <Popover onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <button
-          className="flex items-center space-x-1 text-white hover:text-white/80"
+          className="flex items-center space-x-1 text-white hover:text-white/80 text-sm"
         >
           <span>{t('nav.services')}</span>
           <svg
-            className="w-4 h-4 transition-transform"
+            className={`w-4 h-4 transition-transform ${isRTL ? 'rotate-180' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -51,12 +57,12 @@ const ServicesDropdown = () => {
         </button>
       </PopoverTrigger>
       <PopoverContent 
-        className="w-screen p-0 border-none" 
+        className="w-[calc(100vw-20px)] p-0 border-none mx-[10px] mt-8" 
         style={{ 
-          marginLeft: 'calc(-50vw + 50%)',
-          marginRight: 'calc(-50vw + 50%)',
-          transform: 'translateX(0)',
           background: 'rgba(75,38,21,1)',
+          left: '10px',
+          right: '10px',
+          width: 'calc(100vw - 20px)',
         }}
         sideOffset={0}
       >
@@ -69,7 +75,7 @@ const ServicesDropdown = () => {
                   href={`/${service.id}`}
                   className="text-white hover:text-white/80 text-base transition-colors cursor-pointer"
                 >
-                  {t(`services.${service.id}`)}
+                  {service.title}
                 </Link>
               ))}
             </div>

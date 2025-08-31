@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { useTranslations } from "next-intl";
-import { FiChevronLeft, FiSearch, FiMenu, FiX } from "react-icons/fi";
+import { useTranslations, useLocale } from "next-intl";
+import { FiChevronLeft, FiMenu, FiX, FiChevronUp } from "react-icons/fi";
 import ServicesDropdown from "@/app/[locale]/ServicesDropdown";
 import Link from "next/link";
+import Image from "next/image";
 
 function HeroSection() {
   const t = useTranslations();
+  const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const isRTL = locale === 'ar';
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -18,69 +22,97 @@ function HeroSection() {
       <div className="absolute inset-0 bg-[#4b2f28]/70" />
 
       {/* Navbar */}
-      <nav className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 py-6 text-white">
-        {/* Mobile Menu Button */}
-        <div className="md:flex-1">
-          <button
-            className="md:hidden p-2 rounded-md hover:bg-white/10"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
-          </button>
-        </div>
+      <nav className={`relative z-10 flex items-center justify-between w-full px-4 sm:px-6 py-6 text-white transition-all duration-300 ${isServicesOpen ? 'bg-[rgba(75,38,21,1)]' : ''}`}>
+        {/* Logo - Only visible when services dropdown is open */}
+        {isServicesOpen && (
+          <div className="flex items-center">
+            <Image 
+              src="/logo.png" 
+              alt="MOHAMMED BIN HINTY AL-OBAYY" 
+              width={200} 
+              height={50} 
+              className="h-12 w-auto"
+            />
+          </div>
+        )}
 
-        {/* Desktop Navigation - Now Centered */}
-        <ul className="hidden md:flex items-center space-x-8 flex-1 justify-center">
+        {/* Desktop Navigation - Always Centered */}
+        <ul className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
           <li>
-            <Link href="/" className="hover:text-white/80">
-              {t("nav.home")}
-            </Link>
-          </li>
-          <li>
-            <Link href="#" className="hover:text-white/80">
+            <Link href="#" className="hover:text-white/80 text-sm">
               {t("nav.about")}
             </Link>
           </li>
           <li>
-            <ServicesDropdown />
+            <ServicesDropdown onOpenChange={setIsServicesOpen} />
           </li>
           <li>
-            <Link href="#" className="hover:text-white/80">
-              {t("nav.blog")}
-            </Link>
-          </li>
-          <li>
-            <Link href="#" className="hover:text-white/80">
+            <Link href="#" className="hover:text-white/80 text-sm">
               {t("nav.team")}
             </Link>
           </li>
           <li>
-            <Link href="#" className="hover:text-white/80">
+            <Link href="#" className="hover:text-white/80 text-sm">
+              Blogs
+            </Link>
+          </li>
+          <li>
+            <Link href="#" className="hover:text-white/80 text-sm">
               {t("nav.contact")}
             </Link>
           </li>
         </ul>
 
-        {/* Right Actions - With flex-1 to balance the layout */}
-        <div className="flex items-center space-x-5 md:flex-1 justify-end">
-          <FiSearch className="w-5 h-5 text-white cursor-pointer" />
-          <button className="hidden md:block border border-white/70 text-white px-4 py-2 rounded hover:bg-white hover:text-[#4b2f28] transition-colors">
+        {/* Right Actions */}
+        <div className="flex items-center space-x-4 ml-auto">
+          <div className="flex items-center space-x-2">
+            <span className="text-sm">En</span>
+            <FiChevronUp className="w-3 h-3" />
+          </div>
+          <button className="border border-white/70 text-white px-4 py-2 rounded hover:bg-white hover:text-[#4b2f28] transition-colors text-sm">
             {t("nav.bookAppointment")}
           </button>
         </div>
 
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded-md hover:bg-white/10"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+        </button>
+
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-[#4b2f28] shadow-lg md:hidden">
+          <div className="absolute top-full left-0 right-0 bg-[#4b2f28] shadow-lg md:hidden z-20">
             <div className="px-4 py-6">
               <ul className="space-y-4">
-                <li><Link href="/" className="block text-white hover:text-white/80">{t("nav.home")}</Link></li>
-                <li><Link href="#" className="block text-white hover:text-white/80">{t("nav.about")}</Link></li>
-                <li><Link href="#" className="block text-white hover:text-white/80">{t("nav.services")}</Link></li>
-                <li><Link href="#" className="block text-white hover:text-white/80">{t("nav.blog")}</Link></li>
-                <li><Link href="#" className="block text-white hover:text-white/80">{t("nav.team")}</Link></li>
-                <li><Link href="#" className="block text-white hover:text-white/80">{t("nav.contact")}</Link></li>
+                <li>
+                  <Link href="#" className="block text-white hover:text-white/80">
+                    {t("nav.about")}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="block text-white hover:text-white/80">
+                    {t("nav.services")}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="block text-white hover:text-white/80">
+                    {t("nav.team")}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="block text-white hover:text-white/80">
+                    Blogs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="block text-white hover:text-white/80">
+                    {t("nav.contact")}
+                  </Link>
+                </li>
               </ul>
               <button className="w-full mt-6 border border-white/70 text-white px-4 py-2 rounded hover:bg-white hover:text-[#4b2f28] transition-colors">
                 {t("nav.bookAppointment")}
@@ -92,23 +124,25 @@ function HeroSection() {
 
       {/* Hero Content */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 mt-8 sm:mt-10 md:mt-0 pb-16 sm:pb-32 md:pt-28 md:pb-40">
-        <div className="flex flex-col md:flex-row items-center md:items-start">
+        <div className={`flex flex-col md:flex-row items-center md:items-start ${isRTL ? 'md:flex-row-reverse' : ''}`}>
           {/* Left side controls and text */}
           <div className="flex-1 w-full md:w-auto">
-            <div className="flex flex-col md:flex-row items-center md:items-start">
+            <div className={`flex flex-col md:flex-row items-center md:items-start ${isRTL ? 'md:flex-row-reverse' : ''}`}>
               {/* Left controls - Hidden on mobile */}
-              <div className="hidden md:flex flex-col items-center me-8 mt-6">
+              <div className={`hidden md:flex flex-col items-center mt-6 ${isRTL ? 'ms-8' : 'me-8'}`}>
                 <button className="w-10 h-10 rounded-full border border-white/70 text-white flex items-center justify-center hover:bg-white hover:text-[#4b2f28] transition-colors">
-                  <FiChevronLeft className="w-5 h-5" />
+                  <FiChevronLeft className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`} />
                 </button>
                 <div className="mt-6 flex flex-col space-y-3">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <span
-                      key={i}
-                      className={`block w-2 h-2 rounded-full border border-white ${
-                        i === 1 ? "bg-white" : "bg-transparent"
-                      }`}
-                    />
+                  {["#hero", "#ourTeam", "#clients", "#footer"].map((i, index) => (
+                    <a href={i} key={i}>
+                      <span
+                        key={i}
+                        className={`block w-2 h-2 rounded-full border border-white ${
+                          index === 0 ? "bg-white" : "bg-transparent"
+                        }`}
+                      />
+                    </a>
                   ))}
                 </div>
               </div>
@@ -129,12 +163,12 @@ function HeroSection() {
           </div>
 
           {/* Portrait - Hidden on mobile */}
-          <div className="hidden md:flex flex-1 justify-end">
+          <div className={`hidden md:flex flex-1 ${isRTL ? 'justify-start' : 'justify-end'}`}>
             <div className="relative">
               <div className="absolute -inset-2 rounded-md" />
               <div className="relative w-[360px] h-[360px] bg-[#6b3f32] rounded-md overflow-hidden flex items-center justify-center">
                 {/* Portrait image */}
-                <img src="/portrait.png" alt="Portrait" className="w-full h-full object-cover" />
+                <Image src="/portrait.png" alt="Portrait" className="w-full h-full object-cover" height={360} width={360} />
               </div>
             </div>
           </div>

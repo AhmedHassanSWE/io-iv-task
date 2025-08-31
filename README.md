@@ -20,6 +20,52 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Strapi CMS Integration
+
+This project is integrated with Strapi CMS for content management. To set up Strapi:
+
+### 1. Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```bash
+# Strapi CMS Configuration
+NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
+STRAPI_API_TOKEN=your_strapi_api_token_here
+
+# Optional: Production Strapi URL
+# NEXT_PUBLIC_STRAPI_URL=https://your-strapi-instance.com
+# STRAPI_API_TOKEN=your_production_api_token_here
+```
+
+### 2. Strapi Content Types
+
+Make sure your Strapi instance has the following content types configured:
+
+- **Hero**: `title`, `description`, `readMoreText`, `backgroundImage`, `portraitImage`
+- **Team Members**: `name`, `position`, `bio`, `email`, `phone`, `whatsapp`, `image`
+- **Testimonials**: `name`, `position`, `quote`, `rating`, `image`
+- **Services**: `title`, `description`, `slug`, `icon`, `featured`, `content`
+- **Footer**: `emailPlaceholder`, `subscribeText`, `contactsText`, `aboutText`, `strategyText`, `advantagesText`, `responsibilityText`, `servicesText`, `copyrightText`, `socialLinks`
+- **Legal Consultation**: `title`, `description`, `generalConsultations`, `corporateConsultations`, `individualConsultations`, `conclusion`
+- **Navigation**: `title`, `url`, `order`, `parent`, `children`
+
+### 3. API Endpoints
+
+The following API endpoints are configured:
+
+- `/api/hero` - Hero section content
+- `/api/team-members` - Team members
+- `/api/testimonials` - Testimonials
+- `/api/services` - Services
+- `/api/footer` - Footer content
+- `/api/legal-consultation` - Legal consultation content
+- `/api/navigation` - Navigation items
+
+### 4. Fallback Behavior
+
+If Strapi is not available or returns an error, the application will fallback to static data from the translation files.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

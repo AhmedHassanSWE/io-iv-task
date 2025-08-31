@@ -1,12 +1,14 @@
 "use client";
 
-import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/layout/HeroSection";
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useLocale } from "next-intl";
 
 function Page() {
+  const locale = useLocale();
+  const isRTL = locale === "ar";
   return (
     <div>
       <HeroSection />
@@ -16,7 +18,7 @@ function Page() {
           href="/"
           className="flex items-center text-[rgba(75,38,21,0.7)] hover:opacity-80 mb-8 text-sm"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className={`mr-2 h-4 w-4 ${isRTL ? "rotate-180" : ""}`} />
           Back
         </Link>
 
@@ -125,8 +127,6 @@ function Page() {
           </p>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
